@@ -4,7 +4,7 @@
   "description": "RAG and SSE backend for an AI trip planner.",
   "main": "dist/src/server.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "tsx watch src/server.ts",
     "dev:docker": "docker compose up --build",
     "prebuild": "npm run type-check",
     "build": "tsc",
@@ -55,9 +55,10 @@
     "eslint": "^8.57.1",
     "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vite": "^7.3.6",
+    "vitest": "^5.0.5"
   },
   "overrides": {
     "@tootallnate/once": "^3.0.1",
