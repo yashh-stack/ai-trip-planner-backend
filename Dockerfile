@@ -1,4 +1,4 @@
-FROM node:20-slim AS build
+FROM node:22-slim AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -9,7 +9,7 @@ COPY data ./data
 RUN npm run build:index
 RUN npm run build
 
-FROM node:20-slim AS run
+FROM node:22-slim AS run
 WORKDIR /app
 ENV NODE_ENV=production
 COPY package*.json ./

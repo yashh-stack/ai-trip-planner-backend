@@ -4,7 +4,7 @@
   "description": "RAG and SSE backend for an AI trip planner.",
   "main": "dist/src/server.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "tsx watch src/server.ts",
     "dev:docker": "docker compose up --build",
     "prebuild": "npm run type-check",
     "build": "tsc",
@@ -32,18 +32,18 @@
   "license": "MIT",
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "@xenova/transformers": "^2.17.2",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "faiss-node": "^0.5.1",
-    "firebase-admin": "^13.0.2",
+    "firebase-admin": "^14.5.0",
     "helmet": "^8.0.0",
     "pino": "^9.6.0",
     "pino-http": "^10.4.0",
-    "zod": "^3.24.1"
+    "zod": "^3.24.1",
+    "@huggingface/transformers": "4.3.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
@@ -55,15 +55,17 @@
     "eslint": "^8.57.1",
     "supertest": "^7.0.0",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vite": "^7.3.6",
+    "vitest": "^5.0.5"
   },
   "overrides": {
     "@tootallnate/once": "^3.0.1",
-    "protobufjs": "^7.5.5"
+    "protobufjs": "^7.5.5",
+    "qs": "^6.16.1"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.12.0"
   }
 }

@@ -1,5 +1,5 @@
-import admin from 'firebase-admin';
-import type { Firestore } from 'firebase-admin/firestore';
+import { cert, getApp, getApps, initializeApp } from 'firebase-admin/app';
+import { getFirestore as getAdminFirestore, type Firestore } from 'firebase-admin/firestore';
 import { AppError } from '../types';
 import { logger } from '../middleware/logger';
 import { config } from './index';
@@ -11,18 +11,19 @@ export function getFirestore(): Firestore {
 
   try {
     const privateKey = config.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n');
-    const app = admin.apps.length
-      ? admin.app()
-      : admin.initializeApp({
-          credential: admin.credential.cert({
+    const app = getApps().length
+      ? getApp()
+      : initializeApp({
+          credential: cert({
             projectId: config.FIREBASE_PROJECT_ID,
             clientEmail: config.FIREBASE_CLIENT_EMAIL,
             privateKey,
           }),
         });
 
-    db = app.firestore();
-    return db;
+    const firestore = getAdminFirestore(app);
+    db = firestore;
+    return firestore;
   } catch (err) {
     logger.error({ event: 'firebase_init_failed', message: String(err) });
     throw new AppError('Firestore is unavailable', 503, 'FIRESTORE_ERROR', err);
