@@ -38,7 +38,7 @@ class RAGService {
     }
 
     try {
-      const { pipeline } = await import('@xenova/transformers');
+      const { pipeline } = await import('@huggingface/transformers');
       const faissNode = (await import('faiss-node')) as unknown as { Index: { read(path: string): FaissIndex } };
 
       this.embedder = (await pipeline('feature-extraction', MODEL_ID)) as Embedder;
