@@ -6,7 +6,7 @@ const DATA = join(__dirname, '../data');
 
 async function main(): Promise<void> {
   const raw = JSON.parse(readFileSync(join(DATA, 'destinations.json'), 'utf-8')) as KnowledgeChunk[];
-  const { pipeline } = await import('@xenova/transformers');
+  const { pipeline } = await import('@huggingface/transformers');
   const faissNode = (await import('faiss-node')) as unknown as {
     IndexFlatL2: new (dim: number) => { add(vectors: number[]): void; write(path: string): void };
   };
